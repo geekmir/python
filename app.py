@@ -1,14 +1,32 @@
 import psycopg2
-import requests
-con = psycopg2.connect(database="post_db", user="post_user", password="password", host="127.0.0.1", port="5432")
+from psycopg2 import Error
 
+try:
+    # Connect to an existing database
+    connection = psycopg2.connect(user="post_user",
+                                  password="password",
+                                  host="127.0.0.1",
+                                  port="5432",
+                                  database="isatab_db")
 
-x = requests.get('psycopg2.connect(database="post_db", user="post_user", password="password", host="127.0.0.1", port="5432")')
+    # Create a cursor to perform database operations
+    cursor = connection.cursor()
+    # Print PostgreSQL details
+    print("PostgreSQL server information")
+    print(connection.get_dsn_parameters(), "\n")
+    # Executing a SQL query
+    cursor.execute("SELECT version();")
+    # Fetch result
+    record = cursor.fetchone()
+    print("You are connected to - ", record, "\n")
 
-
-
-print(x.status_code)
-print("Database opened successfully")
+except (Exception, Error) as error:
+    print("Error while connecting to PostgreSQL", error)
+finally:
+    if (connection):
+        cursor.close()
+        connection.close()
+        print("PostgreSQL connection is closed")
 
 
 
