@@ -1,34 +1,34 @@
 -- Table: IsaTab.ONTOLOGY_SOURCE_REFERENCE
 -- DROP TABLE "IsaTab"."ONTOLOGY_SOURCE_REFERENCE";
 
-CREATE TABLE "IsaTab"."ONTOLOGY_SOURCE_REFERENCE"
-(
-    "Ontology_Source_REF_ID" oid NOT NULL,
-    "Term_Source_Name" text COLLATE pg_catalog."default",
-    "Term_Source_File" text COLLATE pg_catalog."default",
-    "Term_Source_Version" text COLLATE pg_catalog."default",
-    "Term_Source_Description" text COLLATE pg_catalog."default",
-    "Ontology_REF_Investigation_Identifier" text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT "ONTOLOGY_SOURCE_REFERENCE_pkey" PRIMARY KEY ("Ontology_Source_REF_ID"),
-    CONSTRAINT "ONTOLOGY_SOURCE_REFERENCE_Ontology_REF_Investigation_Ident_fkey" FOREIGN KEY ("Ontology_REF_Investigation_Identifier")
-        REFERENCES "IsaTab"."INVESTIGATION" ("Investigation_Identifier") MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-        NOT VALID
-)
+--CREATE TABLE "IsaTab"."ONTOLOGY_SOURCE_REFERENCE"
+--(
+--    "Ontology_Source_REF_ID" oid NOT NULL,
+   -- "Term_Source_Name" text COLLATE pg_catalog."default",
+   -- "Term_Source_File" text COLLATE pg_catalog."default",
+   -- "Term_Source_Version" text COLLATE pg_catalog."default",
+   -- "Term_Source_Description" text COLLATE pg_catalog."default",
+   -- "Ontology_REF_Investigation_Identifier" text COLLATE pg_catalog."default" NOT NULL,
+   -- CONSTRAINT "ONTOLOGY_SOURCE_REFERENCE_pkey" PRIMARY KEY ("Ontology_Source_REF_ID"),
+   -- CONSTRAINT "ONTOLOGY_SOURCE_REFERENCE_Ontology_REF_Investigation_Ident_fkey" FOREIGN KEY ("Ontology_REF_Investigation_Identifier")
+    --    REFERENCES "IsaTab"."INVESTIGATION" ("Investigation_Identifier") MATCH SIMPLE
+    --    ON UPDATE NO ACTION
+    --    ON DELETE NO ACTION
+    --    NOT VALID
+--)
 
-TABLESPACE pg_default;
+-- TABLESPACE pg_default;
 
-ALTER TABLE "IsaTab"."ONTOLOGY_SOURCE_REFERENCE"
-    OWNER to postgres;
+-- ALTER TABLE "IsaTab"."ONTOLOGY_SOURCE_REFERENCE"
+ --   OWNER to postgres;
 -- Index: ontology_source_reference_ontology_source_ref_id_uindex
 
 -- DROP INDEX "IsaTab".ontology_source_reference_ontology_source_ref_id_uindex;
 
-CREATE UNIQUE INDEX ontology_source_reference_ontology_source_ref_id_uindex
-    ON "IsaTab"."ONTOLOGY_SOURCE_REFERENCE" USING btree
-    ("Ontology_Source_REF_ID" ASC NULLS LAST)
-    TABLESPACE pg_default;
+--CREATE UNIQUE INDEX ontology_source_reference_ontology_source_ref_id_uindex
+--    ON "IsaTab"."ONTOLOGY_SOURCE_REFERENCE" USING btree
+ --   ("Ontology_Source_REF_ID" ASC NULLS LAST)
+ --   TABLESPACE pg_default;
 
 -- Table: IsaTab.INVESTIGATION
 
