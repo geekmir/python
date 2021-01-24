@@ -7,7 +7,7 @@ try:
                                   password="password",
                                   host="127.0.0.1",
                                   port="5432",
-                                  database="isatab_db")
+                                  database="IsaTab")
 
     # Create a cursor to perform database operations
     cursor = connection.cursor()
