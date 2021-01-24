@@ -26,18 +26,21 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get install postgresql-client-9.6
       - run: whoami
-      #- run: |
-         # psql \
-         # -d $TEST_DATABASE_URL \
-         # -c "CREATE TABLE test (name char(25));"
-      #- run: |
-      #    psql \
-      #    -d $TEST_DATABASE_URL \
-      #    -c "INSERT INTO test VALUES ('John'), ('Joanna'), ('Jennifer');"
-      #- run: |
-      #    psql \
-      #    -d $TEST_DATABASE_URL \
-      #    -c "SELECT * from test"
+      - run: |
+          psql \
+          -c "CREATE database test1;"
+      - run: |
+          psql \
+          -d test1 \
+          -c "CREATE TABLE test (name char(25));"
+      - run: |
+          psql \
+          -d test1 \
+          -c "INSERT INTO test VALUES ('John'), ('Joanna'), ('Jennifer');"
+      - run: |
+          psql \
+          -d test1 \
+          -c "SELECT * from test"
       - run:
           sudo pip3 install psycopg2 
       - run:    
