@@ -22,6 +22,8 @@ try:
 
     #### importing db
     cursor.execute(open("IsaTab.sql", "r").read())
+    record = cursor.fetchone()
+    print("complete output to - ", record, "\n")
     
     
     
