@@ -27,20 +27,9 @@ jobs:
       - run: sudo apt-get install postgresql-client-9.6
       - run: whoami
       - run: |
-          psql \
+          psql --host 127.0.0.1 --port 5432\
           -c "CREATE database test1;"
-      - run: |
-          psql \
-          -d test1 \
-          -c "CREATE TABLE test (name char(25));"
-      - run: |
-          psql \
-          -d test1 \
-          -c "INSERT INTO test VALUES ('John'), ('Joanna'), ('Jennifer');"
-      - run: |
-          psql \
-          -d test1 \
-          -c "SELECT * from test"
+
       - run:
           sudo pip3 install psycopg2 
       - run:    
