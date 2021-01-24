@@ -4,7 +4,7 @@ orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  build:
+  build-and-test:
     
     # Primary container image where all commands run
     
