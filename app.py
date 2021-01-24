@@ -21,7 +21,7 @@ try:
     print("You are connected to - ", record, "\n")
 
     #### importing db
-    cursor.execute(open("isatab_db.sql", "r").read())
+    cursor.execute(open("IsaTab.sql", "r").read())
     
     
     
