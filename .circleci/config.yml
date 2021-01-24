@@ -18,6 +18,7 @@ jobs:
         environment:
           POSTGRES_USER: post_user
           POSTGRES_DB: post_db
+          POSTGRES_PASSWORD: password
 
 
     steps:
@@ -39,7 +40,7 @@ jobs:
       #    -c "SELECT * from test"
       - run:
           pip install psycopg2 
-      -run:    
+      - run:    
           python app.py
 
 
