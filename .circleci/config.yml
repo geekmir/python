@@ -15,7 +15,7 @@ jobs:
     # Service container image
     
       - image: circleci/postgres:9.6.5-alpine-ram
-        envirnment:
+        environment:
           POSTGRES_USER: post_user
           POSTGRES_DB: post_db
           POSTGRES_PASSWORD: ""
