@@ -27,8 +27,7 @@ jobs:
       - run: sudo apt-get install postgresql-client-9.6
       - run: whoami
       - run: |
-          psql --host 127.0.0.1 --port 5432\
-          -c "CREATE database test1;"
+          psql -f IsaTab.sql isatab_db
 
       - run:
           sudo pip3 install psycopg2 
