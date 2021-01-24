@@ -39,6 +39,7 @@ jobs:
       #    -c "SELECT * from test"
       - run:
           pip install psycopg2 
+      -run:    
           python app.py
 
 
