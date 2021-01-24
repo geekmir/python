@@ -26,8 +26,8 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get install postgresql-client-9.6
       - run: whoami
-      - run: |
-          psql --host 127.0.0.1  --port 5432  --user post_user  --password password   -f IsaTab.sql isatab_db
+      #- run: |
+      #    psql --host 127.0.0.1  --port 5432  --user post_user  --password password   -f IsaTab.sql isatab_db
 
       - run:
           sudo pip3 install psycopg2 
