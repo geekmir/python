@@ -4,16 +4,48 @@ orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  build-and-test:
-    executor: python/default
+  build:
+    
+    # Primary container image where all commands run
+    
+    docker:
+      - image: circleci/python:3.6.2-stretch-browsers
+        environment:
+          TEST_DATABASE_URL: postgresql://root@localhost/post_test
+
+    # Service container image
+    
+      - image: circleci/postgres:9.6.5-alpine-ram
+        envirnment:
+          POSTGRES_USER: post_user
+          POSTGRES_DB: post_test
+          POSTGRES_PASSWORD: ""
+
+
     steps:
       - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
-      - run:
-          command: ./app.py test
-          name: simple Test
+      - run: sudo apt-get update
+      - run: sudo apt-get install postgresql-client-9.6
+      - run: whoami
+      - run: |
+          psql \
+          -d $TEST_DATABASE_URL \
+          -c "CREATE TABLE test (name char(25));"
+      - run: |
+          psql \
+          -d $TEST_DATABASE_URL \
+          -c "INSERT INTO test VALUES ('John'), ('Joanna'), ('Jennifer');"
+      - run: |
+          psql \
+          -d $TEST_DATABASE_URL \
+          -c "SELECT * from test"
+
+
+
+
+
+
+
 
 workflows:
   main:
