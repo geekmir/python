@@ -92,7 +92,8 @@ jobs:
       - run:
           name: install postgres
           command: |
-            PowerShell Import-Module Install-Postgres -Force Install-Postgres -User "post_user" -Password "password"
+            Import-Module Install-Postgres
+            Install-Postgres -User "post_user" -Password "password"
       - run:
           name: pip install
           command: |
