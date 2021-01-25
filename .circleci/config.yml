@@ -66,17 +66,32 @@ jobs:
 
   # Windows integration
   Integration-on-windows:
-    executor: postgres-orbs
+    #executor: postgres-orbs
+    #steps:
+    #  - checkout
+    #  - run:
+    #      name: Install postgresql
+    #      command : |
+    #        sudo pip3 install psycopg2
+    #  - run:
+    #      name: Install Python Dependencies
+    #      command : |
+    #        python app.py
+
+    executor:
+      name: win/default
+      shell: powershell.exe
     steps:
       - checkout
+      - run: systeminfo
       - run:
-          name: Install postgresql
-          command : |
-            sudo pip3 install psycopg2
-      - run:
-          name: Install Python Dependencies
-          command : |
-            python app.py
+          name: "Check docker"
+          shell: powershell.exe
+          command: |
+            - run: Write-Host 'Hello, Windows'
+
+
+
 
   # MacOS integration
   Integration-on-macos:
