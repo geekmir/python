@@ -79,7 +79,7 @@ jobs:
     #        python app.py
 
     executor: win/default # executor type
-
+    executor: postgres-orbs
     steps:
       # Commands are run in a Windows virtual machine environment
       - checkout
@@ -97,7 +97,10 @@ jobs:
             ~\python-3.7.0.exe -m pip install --upgrade pip
             ~\python-3.7.0.exe -m pip -V
             pip3 install psycopg2
-
+      - run:
+          name: python connection test
+          command : |
+            python app.py
 
 
 
