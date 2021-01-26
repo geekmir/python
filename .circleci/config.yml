@@ -90,7 +90,7 @@ jobs:
       #      Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.7.0/python-3.7.0.exe" -OutFile "~\python-3.7.0.exe"
       #      ~\python-3.7.0.exe /quiet InstallAllUsers=0 PrependPath=1 Include_test=0
       - run:
-          name: install choco & postgres
+          name: install choco & postgres & python
           command: |
             Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
             choco install postgresql
@@ -107,10 +107,12 @@ jobs:
       - run:
           name: postgres configuratin
           command: |
+            [Alias('DataPath')][String]$pgDataPath="C:\Program Files\PostgreSQL\13\data",
             pg_ctl init
             pg_ctl start
             createdb IsaTab
             create user post_user with encrypted password 'password'
+            grant all privileges on database IsaTab to post_user
             
       - run:
           name: python connection test
