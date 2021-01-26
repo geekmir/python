@@ -83,23 +83,35 @@ jobs:
       # Commands are run in a Windows virtual machine environment
       - checkout
       - run: Write-Host 'Hello, Windows'
-      - run:    
-          name: python install
-          command: |
-            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-            Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.7.0/python-3.7.0.exe" -OutFile "~\python-3.7.0.exe"
-            ~\python-3.7.0.exe /quiet InstallAllUsers=0 PrependPath=1 Include_test=0
+      #- run:    
+      #    name: python install
+      #    command: |
+      #      [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+      #      Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.7.0/python-3.7.0.exe" -OutFile "~\python-3.7.0.exe"
+      #      ~\python-3.7.0.exe /quiet InstallAllUsers=0 PrependPath=1 Include_test=0
       - run:
           name: install choco & postgres
           command: |
             Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
             choco install postgresql
+            choco install python
       - run:
           name: pip install
           command: |
-            ~\python-3.7.0.exe -m pip install --upgrade pip
-            ~\python-3.7.0.exe -m pip -V
+            #~\python-3.7.0.exe -m pip install --upgrade pip
+            python -m pip install --upgrade pip
+            #~\python-3.7.0.exe -m pip -V
+            python -m pip -V
             pip3 install psycopg2
+            
+      - run:
+          name: postgres configuratin
+          command: |
+            pg_ctl init
+            pg_ctl start
+            createdb IsaTab
+            create user post_user with encrypted password 'password'
+            
       - run:
           name: python connection test
           command : |
