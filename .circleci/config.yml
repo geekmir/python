@@ -107,7 +107,7 @@ jobs:
       - run:
           name: postgres configuratin
           command: |
-            [Alias('DataPath')][String]$pgDataPath="C:\Program Files\PostgreSQL\13\data",
+            [Alias('DataPath')][String]$pgDataPath="C:\Program Files\PostgreSQL\13\data"
             pg_ctl init
             pg_ctl start
             createdb IsaTab
