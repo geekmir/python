@@ -111,6 +111,7 @@ jobs:
             PGDATA: 'C:\Program Files\PostgreSQL\13\data'
           command: |
             #[Alias('PGData')][String]$pgDataPath="C:\Program Files\PostgreSQL\13\data"
+            Remove-Item -path 'C:\Program Files\PostgreSQL\13\data' –recurse
             pg_ctl init
             pg_ctl start
             createdb IsaTab
