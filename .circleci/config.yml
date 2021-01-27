@@ -108,7 +108,7 @@ jobs:
       - run:
           name: postgres configuratin
           environment:
-            PGDATA: "C:\Program Files\PostgreSQL\13\data"
+            PGDATA: 'C:\Program Files\PostgreSQL\13\data'
           command: |
             #[Alias('PGData')][String]$pgDataPath="C:\Program Files\PostgreSQL\13\data"
             pg_ctl init
