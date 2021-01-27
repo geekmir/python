@@ -79,8 +79,7 @@ jobs:
     #        python app.py
 
     executor: win/default # executor type
-    environment:
-      PGDATA: "C:\Program Files\PostgreSQL\13\data"
+    
     steps:
       # Commands are run in a Windows virtual machine environment
       - checkout
@@ -108,6 +107,8 @@ jobs:
             
       - run:
           name: postgres configuratin
+          environment:
+            PGDATA: "C:\Program Files\PostgreSQL\13\data"
           command: |
             #[Alias('PGData')][String]$pgDataPath="C:\Program Files\PostgreSQL\13\data"
             pg_ctl init
